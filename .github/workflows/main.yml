@@ -17,7 +17,7 @@ jobs:
       with:
         registry: docker.io
         username: secrets
-        password: ehigimhentor
+        password: dckr_pat_4Qv9hTOm6gC8k15s-3Mefz9Agwo
           
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v2
