@@ -8,7 +8,7 @@ on:
         required: true
         type: choice
         default: 'staging'
-        options: ['staging', 'production']
+        options: ['staging', 'production', 'development']
 
 
 jobs:
