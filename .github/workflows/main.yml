@@ -1,4 +1,4 @@
-name: Build Top 10 Container
+name: Build and Push Docker Image
 
 on:
   push:
@@ -6,24 +6,21 @@ on:
       - main
 
 jobs:
-  build-container:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repository
-        uses: actions/checkout@v2 
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Get webpage.html
-        run: |
-          # Retrieve the Top 10 webpage from the repository
-          top_10_webpage=$(cat https://github.com/djfred8/Top-10-Webpage/webpage.html)
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build container
-        run: |
-          # Build the container image using Nginx as the webserver and include the Top 10 webpage
-          docker build -t top-10-webpage:latest -f Dockerfile .
-          docker run -p 8080:80 top-10-webpage:latest
-
-      - name: Return response
-        run: |
-          # Return the response as a string
-          echo "Container built successfully!"
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: fredodughu/top-10-webpage:latest
