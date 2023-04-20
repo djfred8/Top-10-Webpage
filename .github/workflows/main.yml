@@ -16,11 +16,11 @@ jobs:
       uses: docker/login-action@v2
       with:
        # Retrieve the secrets
-        USERNAME=${{ secrets.USERNAME }}
-        PASSWORD=${{ secrets.PASSWORD }}
+        USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+        PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}
           
        # Use the secrets in your code
-      echo "Username is $USERNAME and password is $PASSWORD" 
+      echo "Dockerhub_Username is $DOCKERHUB_USERNAME and Dockerhub_Password is $DOCKERHUB_PASSWORD" 
 
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v2
