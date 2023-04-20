@@ -3,7 +3,7 @@ name: Build Top 10 Container
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-container:
@@ -12,7 +12,7 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v2
 
-      - name: Get Top 10 webpage
+      - name: Get /Users/apple/Desktop/Top/webpage.html
         run: |
           # Retrieve the Top 10 webpage from the repository
           top_10_webpage=$(cat /Users/apple/Desktop/Top/webpage.html)
@@ -20,8 +20,8 @@ jobs:
       - name: Build container
         run: |
           # Build the container image using Nginx as the webserver and include the Top 10 webpage
-          docker build -t top_10_container:latest -f Dockerfile .
-          docker run -p 8080:80 top_10_container:latest
+          docker build -t top-10-webpage:latest -f Dockerfile .
+          docker run -p 8080:80 top-10-webpage:latest
 
       - name: Return response
         run: |
