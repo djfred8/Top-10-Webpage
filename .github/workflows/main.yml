@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME: fredodughu/myimage1
+  IMAGE_NAME: fredodughu/nginx:latest
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Build Docker Image
-        run: docker build -t $fredodughu/myimage1 .
+        run: docker build -t $fredodughu/nginx:latest .
       
       - name: Login to Docker Hub
         uses: docker/login-action@v1
@@ -27,4 +27,4 @@ jobs:
           password: $DOCKER_PASSWORD
       
       - name: Push Docker Image
-        run: docker push $fredodughu/myimage1
+        run: docker push $fredodughu/nginx:latest
