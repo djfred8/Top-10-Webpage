@@ -1,7 +1,14 @@
 name: Sysbench Load Test
 
 on:
-  push:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose the environment to deploy to'
+        required: true
+        default: 'staging'
+        options: ['staging', 'production']
+
 
 jobs:
   loadtest:
@@ -11,13 +18,13 @@ jobs:
       matrix:
         arch: ["amd64", "386", "arm64"]
     steps:
-      - name: Install sysbench
+      - name: Install sysbench Test on ${{ inputs.environment }}
         run: |
           sudo apt-get update
           sudo apt-get install -y sysbench
 
       
-      - name: Run Sysbench Load Test
+      - name: Run Sysbench Load Test on ${{ inputs.environment }}
         run: |
           if [[ "${{ matrix.arch }}" == "amd64" ]]; then
             sysbench cpu --cpu-max-prime=20000 run --time=60
