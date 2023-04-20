@@ -1,0 +1,29 @@
+name: Build Top 10 Container
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Get Top 10 webpage
+        run: |
+          # Retrieve the Top 10 webpage from the repository
+          top_10_webpage=$(cat /Users/apple/Desktop/Top/webpage.html)
+
+      - name: Build container
+        run: |
+          # Build the container image using Nginx as the webserver and include the Top 10 webpage
+          docker build -t top_10_container:latest -f Dockerfile .
+          docker run -p 8080:80 top_10_container:latest
+
+      - name: Return response
+        run: |
+          # Return the response as a string
+          echo "Container built successfully!"
