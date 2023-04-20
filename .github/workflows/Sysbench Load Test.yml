@@ -1,21 +1,28 @@
 name: Sysbench Load Test
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   loadtest:
-    runs-on: [self-hosted, linux-x64-1, linux-x64-2]
+    runs-on: ubuntu-latest
     name: Run Sysbench Load Test
+    strategy:
+      matrix:
+        arch: ["amd64", "386", "arm64"]
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Install Dependencies
+      - name: Install sysbench
         run: |
           sudo apt-get update
           sudo apt-get install -y sysbench
 
+      
       - name: Run Sysbench Load Test
         run: |
-          sysbench cpu --cpu-max-prime=20000 run --time=60
+          if [[ "${{ matrix.arch }}" == "amd64" ]]; then
+            sysbench cpu --cpu-max-prime=20000 run --time=60
+          elif [[ "${{ matrix.arch }}" == "386" ]]; then
+            sysbench cpu --cpu-max-prime=20000 run --time=60
+          elif [[ "${{ matrix.arch }}" == "arm64" ]]; then
+            sysbench cpu --cpu-max-prime=20000 run --time=60
+          fi
