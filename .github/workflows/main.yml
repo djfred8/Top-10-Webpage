@@ -18,7 +18,7 @@ jobs:
 
     - name: Extract first 8 characters of Git SHA
       run: echo "${{ env.SHORT_SHA }}" | cut -c1-8
-      id: short_sha 
+      #id: short_sha 
 
     - name: Print shortened Git SHA
       run:  echo "Shortened Git SHA" "${{ steps.short_sha.outputs.stdout }}"
