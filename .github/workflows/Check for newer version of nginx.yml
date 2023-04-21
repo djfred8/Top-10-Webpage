@@ -2,7 +2,7 @@ name: Check for newer version of nginx container
 
 on:
   schedule:
-    - cron: "* * * * *" # Run every minute of the day
+    - cron: "0 0 * * *" # Run every day at midnight
 
 jobs:
   check-nginx:
@@ -18,8 +18,8 @@ jobs:
           if [ "$current_version" != "$latest_version" ]; then
             echo "There is a newer version of the nginx container available: $latest_version"
             # BONUS: commit, push, and create a pull request with the newer tag
-            git config --global user.name "GitHub Actions"
-            git config --global user.email "actions@github.com"
+            #git config --global user.name "GitHub Actions"
+            #git config --global user.email "actions@github.com"
             git tag "$latest_version"
             git push origin "$latest_version"
             gh pr create --title "Update nginx to $latest_version" --body "Automated update of nginx container to the latest version." --base main --head "$latest_version"
