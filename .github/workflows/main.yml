@@ -33,4 +33,4 @@ jobs:
           push: true
           tags: |
             fredodughu/top-10-webpage:latest
-            fredodughu/top-10-webpage:$(echo ${{ github.sha }} | cut -c1-8)
+            fredodughu/top-10-webpage:echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
