@@ -20,7 +20,7 @@ jobs:
       run: echo "${{ env.SHORT_SHA }}" | cut -c1-8 > ${short_sha}
 
     - name: Print shortened Git SHA
-      run:  echo ${{short_sha}}
+      run:  echo ${short_sha}
  
     - name: Set up Git
       run: |
