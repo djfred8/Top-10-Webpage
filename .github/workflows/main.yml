@@ -14,14 +14,14 @@ jobs:
     steps:
     
     - name: Print Git SHA
-      run:  echo "Git SHA" "${{ github.sha }}"
+      run: ${{ github.sha }}
 
     - name: Extract first 8 characters of Git SHA
       run: echo "${{ env.SHORT_SHA }}" | cut -c1-8
       id: short_sha 
 
     - name: Print shortened Git SHA
-      run: echo "Shortened Git SHA" "${{ steps.short_sha.outputs.stdout }}"   
+      run: ${{ steps.short_sha.outputs.stdout }}   
  
     - name: Set up Git
       run: |
