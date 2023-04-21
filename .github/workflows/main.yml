@@ -44,5 +44,5 @@ jobs:
       with:
           context: .
           push: true
-          tags: fredodughu/top-10-webpage:latest "${{ env.SHORT_SHA }}"
+          tags: docker.pkg.github.com/fredodughu/top-10-webpage@SHA:latest 
             
