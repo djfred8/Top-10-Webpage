@@ -4,12 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Choose the environment to deploy to'
+        description: "Choose the environment to deploy to"
         required: true
         type: choice
-        default: 'staging'
-        options: ['staging', 'production', 'development']
-
+        default: "staging"
+        options: ["staging", "production", "development"]
 
 jobs:
   loadtest:
@@ -24,7 +23,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y sysbench
 
-      
       - name: Run Sysbench Load Test on ${{ inputs.environment }}
         run: |
           if [[ "${{ matrix.arch }}" == "amd64" ]]; then
