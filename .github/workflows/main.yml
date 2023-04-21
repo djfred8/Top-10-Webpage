@@ -42,5 +42,5 @@ jobs:
       with:
           context: .
           push: true
-          tags: fredodughu/top-10-webpage/nginx:short_sha-latest 
+          tags: fredodughu/top-10-webpage/nginx:latest 
             
