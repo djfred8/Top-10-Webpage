@@ -49,5 +49,5 @@ jobs:
       with:
           context: .
           push: true
-          tags: fredodughu/top-10-webpage/nginx:SHA-latest 
+          tags: docker.pkg.github.com/fredodughu/top-10-webpage/nginx:SHA-latest 
             
