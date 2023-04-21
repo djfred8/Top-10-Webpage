@@ -17,11 +17,10 @@ jobs:
       run: echo Git SHA ${{ github.sha }}
 
     - name: Extract first 8 characters of Git SHA
-      run: echo "${{ env.SHORT_SHA }}" | cut -c1-8
-      #id: short_sha 
+      run: echo "${{ env.SHORT_SHA }}" | cut -c1-8 > SHORT_SHA
 
     - name: Print shortened Git SHA
-      run:  echo "Shortened Git SHA" "${{ steps.short_sha.outputs.stdout }}"
+      run:  echo "SHORT_SHA
  
     - name: Set up Git
       run: |
