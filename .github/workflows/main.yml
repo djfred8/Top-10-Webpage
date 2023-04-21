@@ -18,10 +18,8 @@ jobs:
 
     - name: Extract first 8 characters of Git SHA
       run: echo "${{ env.SHORT_SHA }}" | cut -c1-8 
-
-    - name: Print shortened Git SHA
-      id: short_sha 
- 
+      id: short_sha
+      
     - name: Set up Git
       run: |
         git config --global user.name "GitHub Actions"
