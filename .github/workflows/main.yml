@@ -5,11 +5,24 @@ on:
     branches:
       - main
 
+env:
+  SHORT_SHA: ${{ github.sha }}
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
+    
+    - name: Print Git SHA
+      run:  echo "Git SHA: ${{ github.sha }}"
 
+    - name: Extract first 8 characters of Git SHA
+      run: echo "${{ env.SHORT_SHA }}" | cut -c1-8
+      id: short_sha 
+
+    - name: Print shortened Git SHA
+      run: echo "Shortened Git SHA: ${{ steps.short_sha.outputs.stdout }}"   
+ 
     - name: Set up Git
       run: |
         git config --global user.name "GitHub Actions"
@@ -31,6 +44,5 @@ jobs:
       with:
           context: .
           push: true
-          tags: |
-            fredodughu/top-10-webpage:latest
-            fredodughu/top-10-webpage:echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+          tags: fredodughu/top-10-webpage:latest
+            
