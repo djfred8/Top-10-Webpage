@@ -21,7 +21,7 @@ jobs:
       id: short_sha 
 
     - name: Print shortened Git SHA
-      run: echo "shortened GIT SHA ${{ steps.short_sha.outputs.stdout }}"
+      run: echo "${{ steps.short_sha.outputs.stdout }}"
  
     - name: Set up Git
       run: |
