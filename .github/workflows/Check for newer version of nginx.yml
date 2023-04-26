@@ -1,8 +1,8 @@
 name: Check for newer version of nginx container
 
-on:
+#on:
   schedule:
-    - cron: "0 0 * * *" # Run every day at midnight
+    #- cron: "0 0 * * *" # Run every day at midnight
 
 jobs:
   check-nginx:
